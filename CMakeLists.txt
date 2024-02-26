@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
-project(NotoEngine)
+project(NotoEngineCore VERSION 1.0 LANGUAGES CXX)
 
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(NotoEngine src/main.cpp
+add_library(${PROJECT_NAME} SHARED
+        src/renderer/vulkan_renderer.cpp
 )
 
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 find_package(Vulkan REQUIRED)
 target_include_directories(${PROJECT_NAME} PUBLIC ${Vulkan_INCLUDE_DIRS})
